@@ -1,0 +1,72 @@
+# Time Complexity: O(n). This is a DP solution
+# Space Complexity: O(1) : improved by overwriting given array in-place
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        if len(nums) == 1:  #this is for handling case array is size 1
+            return nums[0]
+        self.calculate(nums, 1)
+        return max(nums)
+        
+        
+    def calculate(self, nums, start):
+        nums[start] = max(nums[start - 1] + nums[start], nums[start])
+        if start + 1 < len(nums):
+            self.calculate(nums, start + 1)
+
+
+# # Time Complexity: O(n)
+# # Space Complexity: O(n)
+# class Solution:
+#     def maxSubArray(self, nums: List[int]) -> int:
+#         best = [None] * len(nums)
+#         best[0] = nums[0]
+#         if len(nums) == 1:  #this is for handling case array is size 1
+#             return nums[0]
+#         self.calculate(best, nums, 1)
+#         return max(best)
+        
+        
+#     def calculate(self, best, nums, start):
+#         best[start] = max(best[start - 1] + nums[start], nums[start])
+#         if start + 1 < len(best):
+#             self.calculate(best, nums, start + 1)
+            
+
+# # Time Complexity: O(n)
+# # Space Complexity: O(n)
+# class Solution:
+#     def maxSubArray(self, nums: List[int]) -> int:
+#         best = [None] * len(nums)
+#         best[0] = nums[0]
+#         if len(nums) == 1:  #this is for handling case array is size 1
+#             return nums[0]
+#         array = self.calculate(best, nums, 1)
+#         return max(array)
+        
+        
+#     def calculate(self, best, nums, start):
+#         best[start] = max(best[start - 1] + nums[start], nums[start])
+#         if start + 1 < len(best):
+#             self.calculate(best, nums, start + 1)
+#         return best
+        
+        
+
+
+# # brute force method O(n^2) - time limit exceeded
+# # space: O(1)
+# class Solution:
+#     def maxSubArray(self, nums: List[int]) -> int:
+#         globalMax = -1000000000000000
+    
+        
+#         for i in range(len(nums)):
+#             localMax = nums[i]
+#             if (localMax > globalMax):
+#                     globalMax = localMax
+#             for j in range(i+1, len(nums)):
+#                 localMax += nums[j]
+#                 if (localMax > globalMax):
+#                     globalMax = localMax
+                    
+#         return globalMax

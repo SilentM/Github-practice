@@ -1,5 +1,5 @@
-Time Complexity: for push, pop, top, peekMax: O(1). For popMax: O(n)
-Space Complexity: O(n)
+# Time Complexity: for push, pop, top, peekMax: O(1). For popMax: O(n)
+# Space Complexity: O(n)
 class MaxStack:
 
     def __init__(self):

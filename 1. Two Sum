@@ -1,0 +1,49 @@
+# Time Complexity: O(n) Single Pass (most efficient)
+# Space complexity: O(n)
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        map = {}
+        array = []
+
+     
+            
+        for i in range(len(nums)):
+            complement = target - nums[i]
+            if complement in map.keys() and i != map.get(complement):
+                array.append(i)
+                array.append(map.get(complement))
+                return array
+            map[nums[i]] = i
+
+        return array
+        
+        
+        
+        
+        
+        
+# Time Complexity: O(n). Double Pass (less efficient than top approach)
+# Space complexity: O(n)
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        map = {}
+        
+        for index in range(len(nums)):
+            checkVal = nums[index]
+            if (map.get(checkVal) == None):
+                map[checkVal] = [index]
+
+            else:
+                prevArray = map[checkVal]
+                prevArray.append(index)
+                map[checkVal] = prevArray
+
+
+        for num in map.keys():
+            complement = target - num
+            if (complement in map and map.get(complement) != None):
+                if (complement == num and len(map.get(complement)) > 1):
+                    return [map.get(complement)[0], map.get(complement)[1]]
+                elif complement != num:
+                    return [map.get(num)[0], map.get(complement)[0]]
+                    

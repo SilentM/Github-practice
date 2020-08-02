@@ -1,0 +1,44 @@
+Time Complexity: for push, pop, top, peekMax: O(1). For popMax: O(n)
+Space Complexity: O(n)
+class MaxStack:
+
+    def __init__(self):
+        self.list = []
+        """
+        initialize your data structure here.
+        """
+        
+
+    def push(self, x: int) -> None:
+        
+        if len(self.list) != 0:
+            maxNum = max(x, self.list[-1][1])
+        else:
+            maxNum = x
+        
+
+
+        self.list.append([x, maxNum])
+        
+
+    def pop(self) -> int:
+        return self.list.pop()[0]       
+
+    def top(self) -> int:
+        return self.list[-1][0] 
+        
+    def peekMax(self) -> int:
+        return self.list[-1][1] 
+    
+   
+    
+
+    def popMax(self) -> int:
+        curMax = self.list[-1][1]
+        b = []
+        while self.list[-1][0] != curMax:
+            b.append(self.pop())
+        self.pop()
+        for i in reversed(b):
+            self.push(i)
+        return curMax

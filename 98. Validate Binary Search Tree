@@ -1,0 +1,97 @@
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+
+# #Lets use in traversal which is (left root right), as I traverse, I'll put inside a queue
+# class Solution:
+#     def isValidBST(self, root: TreeNode) -> bool:
+#         queue = []
+#         self.inOrder(root, queue)
+        
+#         for index in range(1, len(queue)):
+#             if queue[index] <= queue[index - 1]:
+#                 return False
+        
+#         return True
+    
+    
+    
+#     def inOrder(self, root, queue):
+#         if root:
+            
+#             self.inOrder(root.left, queue)
+            
+#             queue.append(root.val)
+            
+#             self.inOrder(root.right, queue)
+            
+        
+    
+
+
+
+
+
+
+
+
+
+# This is a super naive solution
+#time complexity: O(n)
+#space complexity: O(n)
+# class Solution:
+#     def isValidBST(self, root: TreeNode) -> bool:
+#         if (root == None):
+#             return True
+        
+#         #check right side
+#         if root.right:
+#             rightQueue = []
+#             rightQueue.append((root.right, (root.val, None)))
+#             if root.right.val <= root.val:
+#                 return False
+#              #lower bound is parent, no upperbound for right
+            
+#             while len(rightQueue) != 0:
+#                 parent = rightQueue.pop(0)
+#                 currNode = parent[0]
+#                 currBound = parent[1]
+#                 if currNode.right:
+#                     rightQueue.append((currNode.right, (currNode.val, currBound[1])))
+#                     if currNode.right.val <= currNode.val:
+#                         return False
+#                     if currBound[1] != None and currNode.right.val >= currBound[1]:
+#                         return False
+                
+#                 if currNode.left:
+#                     parentLowerBound = currBound[0]
+#                     rightQueue.append((currNode.left, (parentLowerBound, currNode.val)))
+#                     if currNode.left.val >= currNode.val or currNode.left.val <= parentLowerBound:
+#                         return False
+        
+        
+#         # check left side
+#         if root.left:
+#             leftQueue = []
+#             leftQueue.append((root.left, (None, root.val)))
+#             if root.left.val >= root.val:
+#                 return False
+#              #lower bound is nothing,  upperbound  is parent
+            
+#             while len(leftQueue) != 0:
+#                 parent = leftQueue.pop(0)
+#                 currNode = parent[0]
+#                 currBound = parent[1]
+#                 if currNode.left:
+#                     leftQueue.append((currNode.left, (currBound[0], currNode.val)))
+#                     if currNode.left.val >= currNode.val:
+#                         return False
+#                     if currBound[0] != None and currNode.left.val <= currBound[0]:
+#                         return False
+                    
+#                 if currNode.right:
+#                     parentUpperBound = currBound[1]
+#                     leftQueue.append((currNode.right, (currNode.val, parentUpperBound)))
+#                     if currNode.right.val <= currNode.val or currNode.right.val >= parentUpperBound:
+#                         return False
+                     
+#         return True

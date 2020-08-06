@@ -1,0 +1,57 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+
+# time complexity: O(n)
+# space complexity: O(n)
+class Solution:
+    def postorderTraversal(self, root: TreeNode) -> List[int]:
+        stack = []
+        output = []
+        current = root
+        
+        # this is preorder traversal, but modified to root right left
+        # becuase this becomes top to bottom and right to left
+        # thus i can reverse it later to be bottom to top and left to right for post         # order traversal
+        while True:
+            if current != None:
+                stack.append(current)
+                output.append(current.val)
+                current = current.right
+            elif stack:
+                current = stack.pop()
+                current = current.left
+            else: 
+                break
+                
+        # then i can reverse it later to be bottom to top and left to right for post         # order traversal
+        
+        # O(n)
+        return output[::-1]
+        
+        
+            
+            
+
+
+
+# #recursive solution
+# # time complexity: O(n)
+# # space complexity: O(n)
+# class Solution:
+#     def postorderTraversal(self, root: TreeNode) -> List[int]:
+#         queue = []
+#         self.recurse(root, queue)
+#         return queue
+        
+    
+#     def recurse(self, root, queue):
+#         if root:
+#             self.recurse(root.left, queue)
+#             self.recurse(root.right,queue)
+#             queue.append(root.val)
+        

@@ -1,19 +1,35 @@
-# One pass way - shortcut
+# Kadane Algorithm
 # Time Complexity: O(n)
 # Space Complexity: O(1)
+
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        minValue = float('inf');
+        profit = 0
         maxProfit = 0
         
-        for index in range(len(prices)):
-            if prices[index] < minValue:
-                minValue = prices[index]
-                
-            elif prices[index] - minValue > maxProfit:
-                maxProfit = prices[index] - minValue
-        
+        for index in range(1, len(prices)):
+            currentProfit = prices[index] - prices[index - 1]
+            profit = max(profit + currentProfit, currentProfit)
+            maxProfit = max(maxProfit, profit)
+            
         return maxProfit
+    
+# # One pass way - shortcut
+# # Time Complexity: O(n)
+# # Space Complexity: O(1)
+# class Solution:
+#     def maxProfit(self, prices: List[int]) -> int:
+#         minValue = float('inf');
+#         maxProfit = 0
+        
+#         for index in range(len(prices)):
+#             if prices[index] < minValue:
+#                 minValue = prices[index]
+                
+#             elif prices[index] - minValue > maxProfit:
+#                 maxProfit = prices[index] - minValue
+        
+#         return maxProfit
                 
                 
     

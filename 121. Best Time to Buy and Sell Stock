@@ -1,0 +1,65 @@
+# One pass way - shortcut
+# Time Complexity: O(n)
+# Space Complexity: O(1)
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        minValue = float('inf');
+        maxProfit = 0
+        
+        for index in range(len(prices)):
+            if prices[index] < minValue:
+                minValue = prices[index]
+                
+            elif prices[index] - minValue > maxProfit:
+                maxProfit = prices[index] - minValue
+        
+        return maxProfit
+                
+                
+    
+    
+
+# # One pass way
+# # Time Complexity: O(n)
+# # Space Complexity: O(1)
+# class Solution:
+#     def maxProfit(self, prices: List[int]) -> int:
+#         minValue = 1000000000
+#         maxValue = -1000000000
+#         maxSale = 0
+        
+#         minIndex = None
+#         maxIndex = None
+        
+#         for index in range(len(prices)):
+#             if prices[index] < minValue:
+#                 minValue = prices[index]
+#                 minIndex = index
+                
+#             elif minIndex != None and minIndex < index:
+#                 maxValue = prices[index]
+#                 maxIndex = index
+            
+#             if (maxIndex != None) and (minIndex != None) and (maxIndex > minIndex) and (maxValue - minValue) > maxSale:
+#                 maxSale = maxValue - minValue
+        
+#         return maxSale
+    
+    
+    
+
+# # n^2 solution way too slow and inefficient
+# class Solution:
+#     def maxProfit(self, prices: List[int]) -> int:
+#         globalMax = 0
+#         for i in range(len(prices)):
+#             localMax = 0
+#             for j in range(i + 1, len(prices)):
+#                 if (prices[j] - prices[i] > localMax):
+#                     localMax = prices[j] - prices[i]
+                
+#             if localMax > globalMax:
+#                 globalMax = localMax
+        
+#         return globalMax
+            

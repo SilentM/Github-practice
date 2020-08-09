@@ -1,0 +1,50 @@
+#Time complexity: O(n)
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        n = len(s)
+        i = 0
+        j = 0
+        maxValue = 0
+        map = {}
+        while (i < n and j < n):
+            if s[j] not in map:
+                map[s[j]] = 1
+                maxValue = max(maxValue, j - i + 1) 
+                j = j + 1
+            else: 
+                del map[s[i]]
+                i = i + 1
+        
+        return maxValue
+        
+        
+        
+
+# # n^3 brute force: very inefficient and slow
+# class Solution:
+#     def lengthOfLongestSubstring(self, s: str) -> int:
+#         maxLength = 0
+        
+#         for i in range(len(s)):
+#             array = [s[i]]
+
+#             length = len(array)
+            
+#             maxLength = max(maxLength, length)
+                
+#             for j in range(i + 1, len(s)):
+#                 if s[j] not in array:  
+#                     array.append(s[j])
+#                     length = len(array)
+#                     maxLength = max(maxLength, length)
+
+#                 else: 
+#                     break
+        
+#             maxLength = max(maxLength, length
+#                            )
+#         return maxLength
+                
+                
+                
+                

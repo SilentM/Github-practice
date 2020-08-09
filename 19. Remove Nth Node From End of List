@@ -1,0 +1,43 @@
+# Time Complexity: O(n)
+# Space Complexity: O(1)
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        pointer1 = head
+        pointer2 = head
+        distance = 0
+        length = 1 # to handle case we want to delete [1] or first element
+        print(pointer1);
+        print(pointer2);
+        
+        while (pointer1.next != None):
+            length = length + 1       
+            pointer1 = pointer1.next
+            distance = distance + 1
+            if (distance == n and pointer1.next != None):
+                distance = distance - 1
+                pointer2 = pointer2.next
+            print(pointer2)
+            
+        if length == n:
+            head = head.next #deleting only first or size 1 linkedlist
+        else: 
+            pointer2.next = pointer2.next.next
+        return head;
+        
+        
+            
+            
+        
+            
+        
+        
+        
+            
+            
+        

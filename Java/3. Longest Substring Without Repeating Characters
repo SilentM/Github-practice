@@ -1,0 +1,126 @@
+
+// Sliding Window Approach
+// Time : O(2n) because each element at most gets visited twice
+// Space: O(n) in case all characters are unique in the string, but since it is a set of alphabets/characters could be O(min(n, m)) where m is the total set of alphabets/characters possible
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int output = 0;
+        
+        int left = 0;
+        int right = 0;
+        int localCounter = 0;
+        Set<Character> localSet = new HashSet<>();
+    
+        while (left < s.length() && right < s.length()) {
+            char character = s.charAt(right);
+            
+            if (!localSet.contains(character)) {
+                localSet.add(character);
+                right++;
+                localCounter = right - left;
+                if (localCounter > output) {
+                    output = localCounter;
+                }
+                
+                
+            } else { // if it contains
+                char leftChar = s.charAt(left);
+                localSet.remove(leftChar);
+                left++; // move the left to the right by 1 to avoid
+                localCounter = right - left;
+              
+            }
+    
+    }
+                return output;
+
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // Attempt at sliding window approach
+// class Solution {
+//     public int lengthOfLongestSubstring(String s) {
+//         int output = 0;
+        
+//         int index = 0;
+//         int localCounter = 0;
+//         Set<Character> localSet = new HashSet<>();
+    
+//         while (index < s.length()) {
+//             char character = s.charAt(index);
+            
+//             if (!localSet.contains(character)) {
+//                 localCounter++;
+//                 localSet.add(character);
+//                 if (localCounter > output) {
+//                     output = localCounter;
+//                 }
+//             } else {
+//                 if (localCounter > output) {
+//                     output = localCounter;
+//                 }
+//                 localCounter = 0; //reset counter
+//                 localSet = new HashSet<>(); // use a new empty one
+//                 localSet.add(character);
+//                 localCounter++;
+//                 if (localCounter > output) {
+//                     output = localCounter;
+//                 }
+//             }
+            
+//             index++;
+//         }
+        
+//         return output;
+    
+//     }
+// }
+
+
+
+
+// //Bruteforce:
+// // Time: O(n^2) Space: O(n) in worst case if all characters are unique in HashSet 
+
+// class Solution {
+//     public int lengthOfLongestSubstring(String s) {
+//         int output = 0;
+        
+//         for (int i = 0; i < s.length(); i++) {
+//             int localCounter = 0;
+//             Set<Character> localSet = new HashSet<Character>();
+//             for (int j = i; j < s.length(); j++) {
+//                 char character = s.charAt(j);
+//                 if (!localSet.contains(character)) {
+//                     localCounter++;
+//                     localSet.add(character);
+//                     if (localCounter > output) {
+//                         output = localCounter;
+//                     }
+//                 } else {
+//                     if (localCounter > output) {
+//                         output = localCounter;
+//                     }
+//                     break;
+//                 }
+//             }
+//         }
+//         return output;
+//     }
+// }

@@ -1,0 +1,165 @@
+
+// Double Pass using map
+// Time: O(2n) => O(n), Space: O(n) as it has a hasmap storing n elements
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+    Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+    int[] output = new int[2];
+        
+        for(int index = 0; index < nums.length; index++) {
+            map.put(nums[index], index);
+        }
+        for (int index = 0; index < nums.length; index++){
+            Integer complement = target - nums[index];
+            if (map.containsKey(complement) && map.get(complement) != index) {
+                output[0] = index;
+                output[1] = map.get(complement);
+                return output;
+            }
+            
+        }
+        return output;
+        
+    }
+     
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// This works, but inefficient because uses a lot of space to store list in the hashmap
+// Time: O(n), Space(O(n)) as hashmap stores n elements
+// class Solution {
+//     public int[] twoSum(int[] nums, int target) {
+//     Map<Integer, List<Integer>> map = new HashMap<>();
+//     int[] output = new int[2];
+        
+//         for(int index = 0; index < nums.length; index++) {
+//             if (map.get(nums[index]) == null) {
+//             List<Integer> mapValueArray = new ArrayList<>();
+//                 mapValueArray.add(index);
+//             map.put(nums[index], mapValueArray);
+//             } else {
+//                 List<Integer> retrieveList = map.get(nums[index]);
+//                 retrieveList.add(index);
+//                 map.put(nums[index], retrieveList);
+//             }
+//         }
+        
+//         for (int index = 0; index < nums.length; index++) {
+//             int complement = target - nums[index];
+//             if (map.containsKey(complement) && map.get(complement).size() == 1) {
+//                 if (map.get(complement).get(0) != index) {
+//                     output[0] = index;
+//                     output[1] = map.get(complement).get(0);
+//                     return output;
+//                 }
+//             } else if (map.containsKey(complement) && map.get(complement).size() > 1) {
+//                 Integer value = null;
+//                 for (Integer i : map.get(complement)) {
+//                     if (i != index) {
+//                         output[0] = index;
+//                         output[1] = i;
+//                         return output;  
+//                     }
+//                 }
+//             }        
+//         }
+
+//         return output;
+// }
+     
+// }
+
+
+
+
+
+
+// Brute Force:
+// Time Complexity: O(n^2) - 2 for-loops
+// Space Complexity: O(1) - array that stores 2 elements at worst case
+
+// class Solution {
+//     public int[] twoSum(int[] nums, int target) {
+//         int[] array = new int[2];
+
+        
+//         for (int i = 0; i < nums.length; i++) {
+//             for (int j = i + 1; j < nums.length; j++) {
+//                 if (nums[i] + nums[j] == target) {
+//                     array[0] = i;
+//                     array[1] = j;
+//                     return array;
+                
+//                 }
+//             }    
+//         }
+//         return array;
+//     }
+// }
+// class Solution {
+//     public int[] twoSum(int[] nums, int target) {
+//         // int[] array = new int[2];
+
+        
+//         for (int i = 0; i < nums.length; i++) {
+//             for (int j = i + 1; j < nums.length; j++) {
+//                 if (nums[i] + nums[j] == target) {
+//                     // array[0] = i;
+//                     // array[1] = j;
+//                     int[] array = {i, j};
+
+//                     return array;
+                
+//                 }
+//             }    
+//         }
+//         return new int[1];
+//     }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// following code is to get key and value values in a map (to remove a value, need to use an iterator)
+
+
+
+//         for (Map.Entry<Integer, List<Integer>> entry: map.entrySet()){
+//             Integer key = entry.getKey();
+//             List<Integer> values = entry.getValue();
+//             Integer complement = target - key;
+//             if (map.containsKey(complement) && map.get(complement).length == 1 && map.get(complement)[0] != values {
+//                 output[0] = value;
+//                 output[1] = map.get(complement);
+//                 return output;
+//             }
+            
+//         }

@@ -1,0 +1,24 @@
+// Time: O(n)
+// Space: O(1)
+class Solution {
+    public int maxArea(int[] height) {
+        int n = height.length;
+        int leftIndex = 0;
+        int rightIndex = height.length - 1;
+        int outputArea = 0;
+        
+        while (leftIndex != rightIndex && leftIndex < n  && rightIndex > 0) {
+            int xDist = rightIndex - leftIndex;
+            int yDist = Math.min(height[rightIndex], height[leftIndex]);
+            int localArea = xDist * yDist;
+            outputArea = Math.max(localArea, outputArea);
+            if (height[rightIndex] > height[leftIndex]) {
+                leftIndex++;
+            } else {
+                rightIndex--;
+            }
+        }
+        return outputArea;
+        
+    }
+}

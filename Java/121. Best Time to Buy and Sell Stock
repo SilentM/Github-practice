@@ -1,0 +1,46 @@
+// One-pass solution
+// Time: O(n)
+// Space: O(1)
+class Solution {
+    public int maxProfit(int[] prices) {
+        int valley = 0;
+        int max = 0;
+        for (int i = 0; i < prices.length; i++) {
+            if (prices[i] < prices[valley]) {
+                valley = i;
+            } else if (prices[i] - prices[valley] > max) {
+                max = prices[i] - prices[valley];
+            }
+        }
+        return max;
+    }
+}
+
+
+
+// attempt that didnt work out using while loop
+// class Solution {
+//     public int maxProfit(int[] prices) {
+//         int valley = 0;
+//         int peak = 0;
+//         int maxProfit = 0;
+        
+//         while (valley < prices.length - 1 && peak < prices.length) {
+//             if (peak > valley && prices[peak] - prices[valley] > maxProfit) {
+//                     maxProfit = prices[peak] - prices[valley];
+//             } else if (peak < prices.length - 1 && prices[peak] < prices[peak + 1]) {
+//                 peak++;
+//             } else if (peak <= valley) {
+//                 peak++;
+//             } else if (prices[valley] > prices[valley + 1]) {
+//                 valley++;
+//             }  else {
+//                 if (peak < prices.length - 1) {
+//                     peak++;
+//                 }
+//             }
+//     }
+//                 return maxProfit;
+
+// }
+// }

@@ -1,0 +1,86 @@
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+// Recursive Solution
+// Time: O(n)
+// Space: O(n) - creates a recursive stack for all the ListNode nodes
+class Solution {
+    public ListNode reverseList(ListNode head) {
+    
+        if (head == null || head.next == null) {
+            return head;
+        }
+        
+        ListNode newHead = reverseList(head.next);
+        head.next.next  = head;
+        head.next = null; // for the first head to eventually point to null
+        return newHead; // this value never changes
+        
+        
+    }
+}
+
+
+// // Iterative Solution
+// // Time: O(n)
+// // Space: O(1) - in-place
+// class Solution {
+//     public ListNode reverseList(ListNode head) {
+    
+//         ListNode prev = null;
+//         ListNode curr = head;
+        
+//         while (curr != null) {
+//             ListNode temp = curr;
+//             curr = curr.next;
+//             temp.next = prev;
+//             prev = temp;
+//         }
+        
+//         return prev;
+        
+//     }
+// }
+
+
+
+// // First attempt, very verbose and can be simplified
+// // Time: O(2n) => O(n) because it has to go through entire list and insert in stack, then has to pop all from stack again 
+// // Space: O(2n) => O(n) creates a stack and new Linkedlist that contains all the elements
+// class Solution {
+//     public ListNode reverseList(ListNode head) {
+//         if (head == null) {
+//             return head;
+//         }
+        
+//         Stack<Integer> stack = new Stack<>();
+//         while (head != null) {
+//             stack.push(head.val);
+//             head = head.next;
+//         }
+        
+//         ListNode newList = new ListNode();
+//         ListNode newHead = newList;
+//         if (!stack.isEmpty()) {
+//         int curVal = stack.pop();
+//         newList.val = curVal;
+//         }
+
+//         while (!stack.isEmpty()) {
+//             int curr = stack.pop();
+//             ListNode newValue = new ListNode(curr);
+//             newList.next = newValue;
+//             newList = newList.next;
+//         }
+        
+//         return newHead;
+//     }
+// }

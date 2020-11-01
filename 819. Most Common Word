@@ -1,0 +1,22 @@
+class Solution:
+    def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
+        sentences = re.sub('\W+',' ', paragraph )        
+        sentences = sentences.split()
+        map = {}
+        max = 0
+        word = None;
+       
+        for word in sentences:
+            lowerCaseWord = word.lower()
+            if lowerCaseWord not in banned:
+                if lowerCaseWord in map:
+                    map[lowerCaseWord] += 1
+                else:
+                    map[lowerCaseWord] = 1
+        
+        for key, value in map.items():
+            if value > max:
+                max = value
+                word = key
+                
+        return word

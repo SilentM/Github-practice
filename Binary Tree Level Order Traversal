@@ -5,6 +5,45 @@
 #         self.left = left
 #         self.right = right
 
+# THIS SOLUTION USES DEQUE which is O(1) popleft operation
+from collections import deque 
+
+#Time: O(n)
+#Space: O(n)
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        order = [[]]
+        if (root == None):
+            return []
+        else:
+            queue = deque()
+            queue.appendleft((root, 0))
+        while (len(queue) != 0):
+            current = queue.popleft()
+            
+            currentNode = current[0]
+            currentLevel = current[1]
+            
+            if len(order) == currentLevel + 1:
+                order[currentLevel].append(currentNode.val)
+            else:
+                order.append([currentNode.val])
+                
+            if currentNode.left != None:
+                queue.append((currentNode.left, currentLevel + 1))
+            if currentNode.right != None:
+                queue.append((currentNode.right, currentLevel + 1))
+        
+        return order
+
+
+
+
+
+
+
+
+# This solution is identical to above but uses list as queue which is O(n) for pop(0) instead of using deque 
 # Time Complexity: O(n)
 # Space Complexity: O(n)
 class Solution:

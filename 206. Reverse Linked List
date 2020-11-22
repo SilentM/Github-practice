@@ -1,0 +1,46 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+
+
+
+# Recursive Approach
+# Time Complexity: O(n)
+# Space Complexity: O(n) - n recursive calls
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        if (head == None or head.next == None):
+            return head
+        
+        lastNode = self.reverseList(head.next)
+        head.next.next = head
+        head.next = None
+        return lastNode
+        
+       
+
+
+
+
+
+
+# # Iterative Approach
+# # Time Complexity: O(n)
+# # Space Complexity: O(1)
+# class Solution:
+#     def reverseList(self, head: ListNode) -> ListNode:
+#         curr = head
+#         prev = None
+#         nextNode = None
+        
+#         while curr != None:
+#             nextNode = curr.next
+#             curr.next = prev
+            
+#             prev = curr
+#             curr = nextNode
+        
+#         return prev

@@ -1,0 +1,104 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+
+
+
+# Using 2 Pointers - refined (if there is cycle, both pointers eventually meet up)
+# Time Complexity: O(n)
+# Space Complexity: O(1) only using 2 pointers - one moving 1 step and the other moving 2 steps
+class Solution:
+    def hasCycle(self, head: ListNode) -> bool:
+        if (head == None):
+            return False
+        
+        slow = head
+        fast = head.next
+        
+        while slow != fast:
+            if (fast == None or fast.next == None):
+                return False
+            
+            slow = slow.next
+            fast = fast.next.next
+        
+        return True
+
+
+
+
+
+
+# # Using 2 Pointers
+# # Time Complexity: O(n)
+# # Space Complexity: O(1) only using 2 pointers
+# class Solution:
+#     def hasCycle(self, head: ListNode) -> bool:
+#         p1 = head
+#         p2 = head
+        
+#         while p1 != None and p2 != None:
+#             p1 = p1.next
+            
+#             p2 = p2.next
+            
+#             if p2 == None:
+#                 return False
+            
+#             p2 = p2.next
+            
+#             if p2 != None and (p2 == p1 or p2.next == p1):
+#                 return True
+            
+#         return False
+        
+        
+    
+        
+
+
+
+
+
+
+
+
+# # Using Hash Set
+# # Time Complexity: O(n)
+# # Space Complexity: O(n) for hashtable
+# class Solution:
+#     def hasCycle(self, head: ListNode) -> bool:
+#         setOfNode = set()
+        
+#         while head != None:
+#             if head in setOfNode:
+#                 return True
+#             else:
+#                 setOfNode.add(head)
+#                 head = head.next
+        
+#         # head reached None (no cycle)
+#         return False
+    
+        
+
+
+
+
+
+
+
+# Using size limitation of linked list 
+# # Time Complexity: O(n)
+# # Space Complexity: O(1)
+# class Solution:
+#     def hasCycle(self, head: ListNode) -> bool:
+#         for i in range(10*10*10*10):
+#             if head == None:
+#                 return False
+#             head = head.next
+        
+#         return True
